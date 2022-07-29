@@ -6,11 +6,6 @@ const Notestate = (props) => {
   const navigate = useNavigate();
 
   let [notes, setNotes] = useState([]);
-  let [alert, setAlert] = useState({
-    status: false,
-    type: "",
-    message: "",
-  });
   // Fetch All Notes
   let fetchAllNotes = async () => {
     if(!localStorage.getItem('authtoken')){
@@ -31,18 +26,7 @@ const Notestate = (props) => {
   };
   // Showing Alert
   let showAlert = (type, message) => {
-     setAlert({
-      status: true,
-      type: type,
-      message: message,
-    });
-    setTimeout(()=>{
-      setAlert({
-        status: false,
-        type: "",
-        message: "",
-      }, 1500);
-    })
+    alert(message);
   };
   // Add Data
   let addNote = async (title, desc, tag) => {
@@ -151,8 +135,6 @@ const Notestate = (props) => {
       value={{
         notes,
         setNotes,
-        alert,
-        setAlert,
         showAlert,
         addNote,
         deleteNote,

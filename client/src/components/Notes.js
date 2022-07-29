@@ -66,7 +66,7 @@ export default function Notes() {
       <div className="modal-footer">
       <button disabled={data.etitle.length === 0 || 
                      data.edesc.length === 0 ||
-                     data.etag.length === 0} type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
+                     data.etag.length === 0} type="submit" className="btn btn-primary" onClick={handleClick}>Update Note</button>
       </div>
     </div>
   </div>
