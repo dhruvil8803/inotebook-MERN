@@ -9,7 +9,7 @@ const Notestate = (props) => {
   // Fetch All Notes
   let fetchAllNotes = async () => {
     if(!localStorage.getItem('authtoken')){
-     return navigate("/login");
+      navigate("/login");
     }
     else{
     const response = await fetch(`${host}api/notes/shownotes`, {
@@ -30,7 +30,7 @@ const Notestate = (props) => {
   };
   // Add Data
   let addNote = async (title, desc, tag) => {
-    await fetch(`${host}api/notes/addnotes `, {
+    let response  = await fetch(`${host}api/notes/addnotes `, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,8 +43,15 @@ const Notestate = (props) => {
         tag,
       }),
     });
-    fetchAllNotes();
-    showAlert('success', "Note added Successfully");
+    let json = response.json();
+    if(json.success){
+      fetchAllNotes();
+      showAlert('success', "Note added Successfully");
+    }
+    else{
+      showAlert('danger', "Login or signup first");
+      navigate("/login");
+    }
   };
   // Delete Note
   let deleteNote = async (id) => {
