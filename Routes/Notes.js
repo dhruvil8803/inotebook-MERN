@@ -11,7 +11,10 @@ router.post("/addnotes", middleware, async (req, res)=>{
         desc : req.body.desc,
         tag: req.body.tag
     });
-    res.send(note);
+    res.send({
+        success: true,
+        message: "Note added successfully",
+    });
 })
 router.get("/shownotes", middleware,async (req, res)=>{
     let id = req.user;
