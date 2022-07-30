@@ -30,6 +30,11 @@ const Notestate = (props) => {
   };
   // Add Data
   let addNote = async (title, desc, tag) => {
+    if(!localStorage.getItem('authtoken')){
+      showAlert('danger', "Login or signup first");
+      navigate("/login");
+    }
+    else{
     let response  = await fetch(`${host}api/notes/addnotes `, {
       method: "POST",
       headers: {
@@ -49,9 +54,9 @@ const Notestate = (props) => {
       showAlert('success', "Note added Successfully");
     }
     else{
-      showAlert('danger', "Login or signup first");
-      navigate("/login");
+      showAlert('danger', "Some error occur");
     }
+  }
   };
   // Delete Note
   let deleteNote = async (id) => {
