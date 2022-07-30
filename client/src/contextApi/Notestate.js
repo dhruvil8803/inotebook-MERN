@@ -43,7 +43,7 @@ const Notestate = (props) => {
         tag,
       }),
     });
-    let json = response.json();
+    let json = await response.json();
     if(json.success){
       fetchAllNotes();
       showAlert('success', "Note added Successfully");
